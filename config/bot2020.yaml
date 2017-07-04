@@ -1,0 +1,9 @@
+    twist_topic: "/bot2020/cmd_vel"
+    left_motor_topic: "/bot2020/left_motor"
+    right_motor_topic: "/bot2020/right_motor"
+    left_rpm_max: 90.0
+    right_rpm_max: 90.0
+    left_wheel_diameter_mm: 65.0
+    right_wheel_diameter_mm: 65.0
+    wheel_spacing_mm: 105.0
+    pwm_limit: 255
