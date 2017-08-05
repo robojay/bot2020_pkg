@@ -122,11 +122,33 @@ public:
 
 		int cmdLeft, cmdRight;
 
-		cmdLeft = int(pwmLeft);
-		cmdRight = int(pwmRight);
+		// clamp to the limit
+
+		if (pwmLeft >= 0.0) {
+			cmdLeft = std::min(int(pwmLeft), pwmLimit_);
+		}
+		else {
+			cmdLeft = std::max(int(pwmLeft), -pwmLimit_);
+		}
+
+
+		if (pwmRight >= 0.0) {
+			cmdRight = std::min(int(pwmRight), pwmLimit_);
+		}
+		else {
+			cmdRight = std::max(int(pwmRight), -pwmLimit_);
+		}
 
 		ROS_INFO("Command Left = %d", cmdLeft);
 		ROS_INFO("Command Right = %d", cmdRight);
+
+		std_msgs::Int16 left, right;
+
+		left.data = cmdLeft;
+		right.data = cmdRight;
+		leftMotor_.publish(left);
+		rightMotor_.publish(right);
+
 		
 	}
 
